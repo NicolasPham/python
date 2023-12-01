@@ -33,3 +33,13 @@
     - plt.ysticks([0, 2, 4, 6, 8, 10],
     -             ['0B', '2B', '4B', '6B', '8B', '10B'])
     - plt.grid(True)
+
+## Pandas:
+- Change index label: dataFrame.index = <list of variables>
+- Use 3rd column as index: pd.read_csv('fileName', index_col = 2)
+- 
+
+
+
+
+
