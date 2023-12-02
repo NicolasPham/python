@@ -14,6 +14,7 @@
     - np.std(np_city[:, 1]) -> standard deviation of the second column
     - np.random.normal(mean, standard deviation, number of samples) -> generate data
     - np_city = np.column_stack((first column data, second column data)) -> stack data into 2 columns
+    - np.logical_and(bmi > 21, bmi < 22): can also use np.logical_or(), np.logical_not()
 
 ## Matplotlib:
 - plt.plot(horizontal, vertical) -> line chart
