@@ -1,3 +1,20 @@
+``` python
+
+## Basic Python:
+#### For loop:
+##### Dictionary:
+- for key, value in dictionary.items():
+    > print(key + ' -- ' + value)
+##### Numpy array
+- for value in np.nditer(np_array): # to iterate all values in np array
+    > print(value)
+##### Pandas DataFrame:
+- for row_label, row_data in dataFrame.iterrows():
+    > print(row_label)
+    > print(row_data)
+    > dataFrame.loc[lab, 'name_length'] = len(row_data['country_name']) #add new column as length of country_name
+
+
 ## Numpy:
 - Create numpy array: np_array = np.array(list)
 - Calculate: bmi = np_weight / np_height ** 2
@@ -38,9 +55,11 @@
 ## Pandas:
 - Change index label: dataFrame.index = <list of variables>
 - Use 3rd column as index: pd.read_csv('fileName', index_col = 2)
-- 
+- apply: dataFrame['name_length'] = dataFrame['country_name'].apply(len)
+    > #loop all row and apply len() function to specific column
+    > # apply(str.upper) for uppercase
 
 
 
-
+```
 
