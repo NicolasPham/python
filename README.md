@@ -81,6 +81,12 @@ For loop:
     - data[['weight', 'height']].agg([<function1>, <function2>]) : #apply aggregate function to column
     - data['weight'].cumsum(): cumulative sum of a column
         - cummax(): cumulative max
+    - dataFrame.drop_duplicates(subset = [<column1>, <column2>])
+    - datFrame[<column>].value_counts(sort = True, normalize = True)
+        - nomarlize = True: get the proportions
+    - dataFrame.groupby(<column1>)[<column2>].mean()
+        - dataFrame.groupby([<column1>, <column2>])[[<column3>, <column4>]].agg([min, max, sum])
+
 ```
 
 
