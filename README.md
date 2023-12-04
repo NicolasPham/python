@@ -80,6 +80,7 @@ For loop:
         - .sum(), .quantile()
     - data[['weight', 'height']].agg([<function1>, <function2>]) : #apply aggregate function to column
     - data['weight'].cumsum(): cumulative sum of a column
+        - cummax(): cumulative max
 ```
 
 
