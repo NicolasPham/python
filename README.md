@@ -66,7 +66,12 @@ For loop:
     - data.info(): #show information for each column such as datatype and missing values
     - data.describe(): #calculate summary statistics for each column
     - data.sort_values([<column_name1>, <column_name2>], ascending = [False, True]): sort data values in specific column
+    - data.sort_index(level = [<index1>, <index2>], ascending = [True, False])
     - is_black_or_brown = data['color'].isin(['Black', 'Brown'])
+    - data.columns / data.index: for column names, index column
+        - data.set_index(<column1>): set column as index
+        - data.reset_index(drop = True): reset index
+            - drop = True: remove the column as index, reset index
 - Change index label: dataFrame.index = <list of variables>
 - Use 3rd column as index: pd.read_csv('fileName', index_col = 2)
 - apply: dataFrame['name_length'] = dataFrame['country_name'].apply(len)
@@ -90,6 +95,12 @@ For loop:
         - #take the mean by default
         - fill_value: replace missing value with 0
         - margins = True: take the means for all columns and rows, not including missing values
+- Slicing and Subsetting:
+    - data.loc['Chow Chow': 'Poodle']: #the final value 'Poodle' is included
+    - data.loc[('Labrador':'Brown'):('Schnauzer': 'Grey')]: #Slicing the inner index levels correctly
+    - data.loc[:, 'name': 'height']: #slicing columns
+    - data.iloc[2:5, 1:4]
+    - temperatures_bool = temperatures.loc[(temperatures['date'] >= '2010-01-01') & (temperatures['date'] <= '2011-12-31')]
         
 
 ```
