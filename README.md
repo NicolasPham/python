@@ -86,6 +86,11 @@ For loop:
         - nomarlize = True: get the proportions
     - dataFrame.groupby(<column1>)[<column2>].mean()
         - dataFrame.groupby([<column1>, <column2>])[[<column3>, <column4>]].agg([min, max, sum])
+    - data.pivot_table(values = 'weight', index = 'color', columns = 'breed', aggfunc = [np.median, np.mean], fill_value = 0, margins = True):
+        - #take the mean by default
+        - fill_value: replace missing value with 0
+        - margins = True: take the means for all columns and rows, not including missing values
+        
 
 ```
 
