@@ -47,8 +47,14 @@ For loop:
     - s: size of dots
     - c: color
     - alpha: opacity
-- plt.hist(x, bins, range)
-
+- plt.hist(x, bins, range, alpha)
+    - bins: number of bins
+    - alpha: transparent
+- data.plot(kind = 'bar', x, y, title, rot = 45)
+    - kind = bar / line / scatter
+    - x,y: data for line plot
+    - rot: rotate the label for 45 degree
+- plt.legent(['Male', 'Female'])
 - plt.clf() -> clean up plot
 
 
@@ -95,14 +101,21 @@ For loop:
         - #take the mean by default
         - fill_value: replace missing value with 0
         - margins = True: take the means for all columns and rows, not including missing values
+        - print(mean_temp_by_year[mean_temp_by_year == mean_temp_by_year.max()]): get the max value in the table
 - Slicing and Subsetting:
     - data.loc['Chow Chow': 'Poodle']: #the final value 'Poodle' is included
     - data.loc[('Labrador':'Brown'):('Schnauzer': 'Grey')]: #Slicing the inner index levels correctly
     - data.loc[:, 'name': 'height']: #slicing columns
     - data.iloc[2:5, 1:4]
     - temperatures_bool = temperatures.loc[(temperatures['date'] >= '2010-01-01') & (temperatures['date'] <= '2011-12-31')]
-        
-
+- Access component of date:
+    - data['date'].dt.month
+- Missing values:
+    - data.isna(): detect missing values
+        - data.isna().any(): return boolean for each variables with any NaN
+        - data.isna().sum(): counting missing values
+    - data.dropna(): removing missing values
+    - data.fillna(0): fill NaN with 0
 ```
 
 
