@@ -37,6 +37,8 @@ For loop:
     - np.random.normal(mean, standard deviation, number of samples) -> generate data
     - np_city = np.column_stack((first column data, second column data)) -> stack data into 2 columns
     - np.logical_and(bmi > 21, bmi < 22): can also use np.logical_or(), np.logical_not()
+    - np.linspace(start, stop, num)
+        - np.quantile(data[<column>], np.linspace(0, 1, 5): split data into quartiles (5 different intervals)
 
 ```
 ## Matplotlib:
@@ -54,6 +56,7 @@ For loop:
     - kind = bar / line / scatter
     - x,y: data for line plot
     - rot: rotate the label for 45 degree
+- plt.boxplot(data[<column>])
 - plt.legent(['Male', 'Female'])
 - plt.clf() -> clean up plot
 
@@ -117,7 +120,34 @@ For loop:
     - data.dropna(): removing missing values
     - data.fillna(0): fill NaN with 0
 ```
+## Statistic:
+``` python
+- Definition:
+    - Descriptive statistic: describing the data you have
+        - measures of center, spread
+        - charts to visualize data
+    - Inferential statistic: using data to make prediction or estimation
+        - hypothesis testing, confident interval
+        - regression analysis
+    - Spread:
+        - Variance: average distance from each data's point to data's mean. The higher, the spreader
+            - 1. take distance from mean
+            - 2. square each distance
+            - 3. sum square distances
+            - 4. divide by number of data point - 1
+
+            - or: np.var(data[<column], ddof = 1)
+        - Standard deviation: square root of variance
+            - np.sqrt(np.var(data[<column>], ddof = 1))
+            - or: np.std(data[<column>], ddof = 1)
+        - Quantile:
+            - np.quantile(data[<column>], 0.5): 50% percent of data ~ exactly the same as median
+            - np.quantile(data[<column>], [0, 0.25, 0.5, 0.75, 1])
+        - Interquartile Range (IQR): the distance between 25th and 75th percentile
+            - import scipy.stats as iqr
+            - iqr(data[<column>])
+        - Outliers: data point that is substantially different from others
+            - outlier < Q1 - 1.5 * IQR or outlier > Q3 + 1.5 * IQR
 
 
-```
 
