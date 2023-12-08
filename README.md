@@ -148,6 +148,20 @@ For loop:
             - iqr(data[<column>])
         - Outliers: data point that is substantially different from others
             - outlier < Q1 - 1.5 * IQR or outlier > Q3 + 1.5 * IQR
+        - Expected Value: mean of probability distribution
+            - value * probability
+- Probability:
+    - data.sample(2, replace = True): get 2 samples from dataframe
+        - 2: number of sample
+        - replace = True: sample with replacement (rows can be appear more than 1 time)
+        - np.random.seed(163): need to set up seed to get same random number
+    - Uniform distribution for continuous distribution:
+        - from scipy.stats import uniform
+        - uniform.cdf(value or "less" want to calculate prob, lower limit, higher limt):
+        - 1 - uniform.cdf(value or 'more' want to calculate prob, lower limit, higher limit)
+        - uniform.rvs(min, max, number of values): generate random number according to uniform distribution
+
+
 
 
 
