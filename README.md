@@ -160,7 +160,21 @@ For loop:
         - uniform.cdf(value or "less" want to calculate prob, lower limit, higher limt):
         - 1 - uniform.cdf(value or 'more' want to calculate prob, lower limit, higher limit)
         - uniform.rvs(min, max, number of values): generate random number according to uniform distribution
-
+    - Binominal distribution: only 2 outputs (1 vs 0, win or loss, fail or success)
+        - from scipy.stats import binom
+        - binom.rvw(# of coins, probability of success, size = # of trials):
+            - binon.rvs(1, 0.5, size = 5) : [0, 1, 1, 1, 0]
+            - binom.rvs(5, 0.5, size = 1): [3] : the total number of 1 or success
+        - Can be describe by n and p:
+            - n: total number of trials (second arguments in binom.rvs)
+            - p: probability of success (third arguments in binom.rvs)
+        - binom.pmf(# of outcome, # of trials, prob of head)
+            - binom.pmf(7, 10, 0.5): what's the probability of getting "exactly" 7 heads when flip a coin 10 times
+            - binom.cdf(7, 10, 0.5): what's the probaility of getting 7 or "less" heads when flip a coin 10 times
+            - 1 - binom(7, 10, 0.5): 7 or "more" heads
+        - Expected value = n * p:
+            - Expected number of heads out of 10 flips: 10 * 0.5 = 5
+        - IMPORTANT: each trial has to be independent
 
 
 
