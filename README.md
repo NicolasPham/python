@@ -175,7 +175,20 @@ For loop:
         - Expected value = n * p:
             - Expected number of heads out of 10 flips: 10 * 0.5 = 5
         - IMPORTANT: each trial has to be independent
-
-
-
+    - Normal Distribution:
+        - Properties:
+            - Symmetrical in the center by mean
+            - NEVER hit 0%
+            - Describe by mean and std
+        - 68-95-99.7% rule: APPLY ONLY FOR STANDARD NORMAL DISTRIBUTION (mean = 0 and std = 1)
+            - 68% fall in std = 1 of the mean
+            - 95% fall in std = 2 of the mean
+            - 99.7% fall in std = 3 of the mean
+        - Python:
+            - from scipy.stats import norm
+            - norm.cdf(154, 161, 7): the percent of women "shorter" than 154cm with mean = 161cm and std = 7
+            - 1 - norm(154, 161. 7): women "taller" than 154cm
+            - norm.ppf(0.9, 161. 7): what height are 90% women "shorter" than with mean = 161cm and std = 7?
+            - norm.ppf((1 - 0.9), 161. 7): what heigh are 90% are "taller" than?
+            - norm.rvs(161. 7, size = 10): generate random number from the distribution
 
