@@ -41,7 +41,7 @@ For loop:
         - np.quantile(data[<column>], np.linspace(0, 1, 5): split data into quartiles (5 different intervals)
 
 ```
-## Matplotlib:
+## Matplotlib and Seaborn:
 ``` python
 
 - plt.plot(horizontal, vertical) -> line chart
@@ -68,6 +68,11 @@ For loop:
     - plt.ysticks([0, 2, 4, 6, 8, 10],
     -             ['0B', '2B', '4B', '6B', '8B', '10B'])
     - plt.grid(True)
+
+- sns.scatterplot(x = <column1>, y = <column2>, data = dataFrame)
+- sns.lmplot(x = <column1>, y = <column2>, data = dataFrame, ci = None): adding a trendline
+    - ci: confident interval
+- data[<column1>].corr(data[<column2>]): compute correlation
 ```
 ## Pandas:
 ``` python
@@ -150,7 +155,7 @@ For loop:
             - outlier < Q1 - 1.5 * IQR or outlier > Q3 + 1.5 * IQR
         - Expected Value: mean of probability distribution
             - value * probability
-- Probability:
+- Probability and Distribution:
     - data.sample(2, replace = True): get 2 samples from dataframe
         - 2: number of sample
         - replace = True: sample with replacement (rows can be appear more than 1 time)
@@ -213,3 +218,10 @@ For loop:
         - Degree of freedom: which affects thickness of the tails
             - Lower df: thicker tails, higher std
             - Higher df: closer to normal distribution
+- Correlation:
+    - Correlation Coefficient:
+        - When the data is highly skew, we can apply "log transformation"
+        - data[<new_column>] = np.log(data[<column>])
+        - Other transformation:
+            - square root: (sqrt(x))
+            - Reciprocal: 1 / x
