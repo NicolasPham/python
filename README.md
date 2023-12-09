@@ -189,6 +189,27 @@ For loop:
             - norm.cdf(154, 161, 7): the percent of women "shorter" than 154cm with mean = 161cm and std = 7
             - 1 - norm(154, 161. 7): women "taller" than 154cm
             - norm.ppf(0.9, 161. 7): what height are 90% women "shorter" than with mean = 161cm and std = 7?
-            - norm.ppf((1 - 0.9), 161. 7): what heigh are 90% are "taller" than?
+            - norm.ppf((1 - 0.9), 161. 7): what height are 90% are "taller" than?
             - norm.rvs(161. 7, size = 10): generate random number from the distribution
-
+    - Poisson distribution: the probability of some # of events occurring over a fixed period of time
+        - Definition:
+            - lambda: average number of events per time interval
+            - Distribution's peak is always at lambda value
+        - Python:
+            - from scipy.stats import poisson
+            - poisson.pmf(5, 8): the probability of # adoption per week = 5 if the average number of adoptions is 8 per week
+            - poisson.cdf(5, 8): the probability of # adoption per week <= 5 if the average number of adoptions is 8 per week
+            - 1 - poisson.cdf(5,8): the probability of # adoption per week >= 5 if the average number of adoptions is 8 per week
+            - poisson.rvs(8, size = 10): generate 10 sample from a poisson distribution has lambda = 8
+    - Exponential Distribution:
+        - Definition:
+            - lambda = 0.5: if one customer service ticket is created every 2 mins ~ half ticket is created per minute
+            - 1 / lambda: time between events (1 ticket every 2 mins)
+        - Python:
+            - from scipy.stats import expon
+            - expon.cdf(1, scale = 2): probaility of waiting less than 1 min with 1/lambda = 2
+            - 1 - expon.cdf(4, scale = 2): probability of waiting time more than 4 mins with 1/lambda = 2
+    - Student's T Distribution:
+        - Degree of freedom: which affects thickness of the tails
+            - Lower df: thicker tails, higher std
+            - Higher df: closer to normal distribution
