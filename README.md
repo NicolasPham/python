@@ -79,6 +79,57 @@ For loop:
         - hue = <column3>
         - hue_order = [<value1>, <value2>]
         - hue_colors = {<value1>: 'black', <value2>: 'red'}
+- RELATIONAL PLOTS AND SUBPLOTS: used for quatitative variables
+    - relplot(x, y, data, kind, col, row, col_wrap, col_order, size, style, alpha, markers, dashes, ci):
+        - create subplots in a single figure
+        - kind = 'scatter' / 'line'
+        - col (~column) = <column_name>
+        - row = <column_name>
+        - col_wrap = 2: 2 columns per row
+        - col_order: order of the fugure
+        - size = <column_name>: size of the points
+        - style = <column_name>: style of each point base on the assigned column
+        - alpha = 0 to 1: transparency of points
+        - markers = True: used for lineplot, change datapoint into a marker base on "style" parameter
+        - dashes = False: lines in lineplot DONT VARY by subgroup
+        - ci = 'sd': confident interval of standard deviation (show us how the spread of distribution)
+- COUNTPLOTS AND BARPLOTS: used for categorical variables
+    - sns.catplot(x, y, data, kind, order, sym, whis, join, estimator, capsize)
+        - kind = 'count' / 'bar' / 'box' / 'point'
+        - order = [<list of order>]
+        - sym = "" : omit the outliers (used in boxplot)
+        - whis (~whiskers): the range of IQR, by default is 1.5
+            - whis = 2: set the whiskers = 2 * IQR
+            - whis = [5, 95]: show the 5th and 95th percentile
+        - join: only used in pointplot (True / False)
+        - estimator:
+            - from numpy import median
+            - estimator = median: calculate median instead of mean by default
+        -capsize = 0.2: change the way confident interval is displayed
+- CHANGING PLOT STYLE AND COLOR:
+    - style: include background and axes
+        - sns.set_style()
+        - preset values: ['white', 'dark', 'whitegrid', 'darkgrid', 'ticks']
+    - palette: changes the color of the main elements of the plot
+        - sns.set_palette()
+        - Diverging palette values: ['RdBu', 'PRGn', 'RdBu_r', PRGn_r']
+        - Sequential palette values: ['Greys', 'Blue', 'PuRd', 'GnBu']
+        - custom palette: ['red', 'green', 'blue', 'yellow', etc]
+    - scale: change the scale of the plot elements and label:
+        - sns.set_context()
+        - values: ['paper', 'notebook', 'talk', 'poster'] with default is 'paper'
+- TITLE AND LABELS:
+    - 2 types of plots in seaborn:
+        - FACETGRID: (relplot, catplot): can create subplots
+        - AXESSUBPLOT: (scatterplot, countplot, etc): only create a single plot
+    - Set title:
+        - g = sns.catplot(...)
+        - g.fig.suptitle("New title", y = 1.03): add title for FACETGRID
+            - y : set the height of the title, move it up with 1.03
+        - g.set_title("This is {col_name}", y = 1.03): set tile for AXESSUBPLOT with variable col_name
+    - Axes labels:
+        - g.set(xlabel = "New X Label", ylabel = "New Y lable")
+        - plt.xticks(rotation = 90): rotate the label of x-axis 90 degree
 ```
 ## Pandas:
 ``` python
