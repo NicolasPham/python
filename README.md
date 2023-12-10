@@ -69,10 +69,16 @@ For loop:
     -             ['0B', '2B', '4B', '6B', '8B', '10B'])
     - plt.grid(True)
 
-- sns.scatterplot(x = <column1>, y = <column2>, data = dataFrame)
+- tips = sns.load_dataset('tips'): load the dataset name 'tips' as variable "tips"
+- sns.scatterplot(x = <column1>, y = <column2>, data = dataFrame, hue = <column3>, hue_order = [<value1>, <value2>])
 - sns.lmplot(x = <column1>, y = <column2>, data = dataFrame, ci = None): adding a trendline
     - ci: confident interval
-- data[<column1>].corr(data[<column2>]): compute correlation
+- sns.countplot(x = <column>, data = data) : countplot for each gender
+- Setting HUE:
+    - sns.scatterplot(x = <column1>, y = <column2>, data = dataFrame, hue, hue_order, palette = hue_colors)
+        - hue = <column3>
+        - hue_order = [<value1>, <value2>]
+        - hue_colors = {<value1>: 'black', <value2>: 'red'}
 ```
 ## Pandas:
 ``` python
@@ -220,8 +226,14 @@ For loop:
             - Higher df: closer to normal distribution
 - Correlation:
     - Correlation Coefficient:
+        - data[<column1>].corr(data[<column2>]): compute correlation
         - When the data is highly skew, we can apply "log transformation"
         - data[<new_column>] = np.log(data[<column>])
         - Other transformation:
             - square root: (sqrt(x))
             - Reciprocal: 1 / x
+- Experiment:
+    - Aims to answer: what is  the effect of the treatment on the response
+        - Treatment:  explanatory / independent variable
+        - Response: response / dependent variable
+    - 
