@@ -106,7 +106,7 @@ For loop:
             - from numpy import median
             - estimator = median: calculate median instead of mean by default
         -capsize = 0.2: change the way confident interval is displayed
-- CHANGING PLOT STYLE AND COLOR:
+- CHANGING PLOT STYLE AND COLOR: have to use "", NOT ''
     - style: include background and axes
         - sns.set_style()
         - preset values: ['white', 'dark', 'whitegrid', 'darkgrid', 'ticks']
