@@ -287,4 +287,9 @@ For loop:
     - Aims to answer: what is  the effect of the treatment on the response
         - Treatment:  explanatory / independent variable
         - Response: response / dependent variable
-    - 
+- EDA:
+    - Univariate: involve one variable:
+        - Numerics: Histogram, boxplot, summary statistic
+        - Categorical: Bar chart, table summary
+    - Bivariate: involve 2 variables, also called "covariation"
+        - 
