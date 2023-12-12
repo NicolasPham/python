@@ -14,6 +14,15 @@ For loop:
     > print(row_data)
     > dataFrame.loc[lab, 'name_length'] = len(row_data['country_name']) #add new column as length of country_name
 ```
+## EDA:
+``` python
+    - Initial exploration:
+        - data.info(): #show information for each column such as datatype and missing values
+        - data.value_counts('genre'): find the number of books with each genre
+        - data['year'] = data['year'].astype(int): update data type
+            - values: int, str, float, dict, list, bool
+        - books['genre'].isin(['Fiction', 'Non Fiction']): check whether values in genre column contain those values
+```
 
 ## Numpy:
 ``` python
@@ -70,6 +79,7 @@ For loop:
     - plt.grid(True)
 
 - tips = sns.load_dataset('tips'): load the dataset name 'tips' as variable "tips"
+- sns.histplot(data, x, binwidth)
 - sns.scatterplot(x = <column1>, y = <column2>, data = dataFrame, hue = <column3>, hue_order = [<value1>, <value2>])
 - sns.lmplot(x = <column1>, y = <column2>, data = dataFrame, ci = None): adding a trendline
     - ci: confident interval
@@ -134,7 +144,6 @@ For loop:
 ## Pandas:
 ``` python
 - Inspecting DataFrame:
-    - data.info(): #show information for each column such as datatype and missing values
     - data.describe(): #calculate summary statistics for each column
     - data.sort_values([<column_name1>, <column_name2>], ascending = [False, True]): sort data values in specific column
     - data.sort_index(level = [<index1>, <index2>], ascending = [True, False])
@@ -155,6 +164,8 @@ For loop:
         - .max(), .min()
         - .sum(), .quantile()
     - data[['weight', 'height']].agg([<function1>, <function2>]) : #apply aggregate function to column
+        - data.agg({<column1>: ['mean', 'std], <column2>: ['median']})
+        - data.groupby('genre').agg(mean_rating = ('rating', 'mean')): set aggregated name for column calculate mean of rating column
     - data['weight'].cumsum(): cumulative sum of a column
         - cummax(): cumulative max
     - dataFrame.drop_duplicates(subset = [<column1>, <column2>])
