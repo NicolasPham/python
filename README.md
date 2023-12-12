@@ -22,6 +22,18 @@ For loop:
         - data['year'] = data['year'].astype(int): update data type
             - values: int, str, float, dict, list, bool
         - books['genre'].isin(['Fiction', 'Non Fiction']): check whether values in genre column contain those values
+    - Missing data:
+        - data.isna().sum(): counting missing value for each column
+        - DROP MISSING VALUES if they are 5% less than total values
+            - threshold = len(data) * 0.05
+            - col_to_drop = data.columns[data.isna().sum() <= threshold]
+            - data.dropna(subset = col_to_drop, inplace = True)
+        - Impute missing values:    
+            - cols_with_missing_values = data.columns[data.isna().sum() > 0]
+            - for col in cols_with_missing_values[:, -1]:
+                - data[col].fillna(data[col].mode()[0)
+            - col_dict = data.groupby(<column to groupby>)[<column has missing value>].mean().to_dict()
+            - data[<column has missing value>] = data[<column has missing value>].fillna(data[<column to groupby>).map(col_dict)
 ```
 
 ## Numpy:
