@@ -34,6 +34,20 @@ For loop:
                 - data[col].fillna(data[col].mode()[0)
             - col_dict = data.groupby(<column to groupby>)[<column has missing value>].mean().to_dict()
             - data[<column has missing value>] = data[<column has missing value>].fillna(data[<column to groupby>).map(col_dict)
+    - Converting and analyzing categorical data:
+        - pd.Series.str.repalce('characters want to remove', character to replace them with')
+        - data.select_dtypes('object'): select data with object types only
+        - data[<column>].nunique(): count how many unique values in the column
+        - data[<column>].str.contains('data analyst'): search for a series whether values contains string
+            - data[<column>].str.contains('data analyst|data scientst'): search for multiple values
+            - data[<column>].str.contains('^data'): any start with "data"
+            - data[<new column>] = np.select(conditions, categories, default = 'Other'): create new column with conditions for values
+    - Working with numric data:
+        data['median'] = data.groupby(<column1>)[<column2>].transform(lambda x: x.std()): adding summary statistic into DataFrame
+- Pattern over time:
+    - data = pd.read_csv('link to file", parse_dates = ['date column'])
+    - data['date'] = pd.to_datetime(data['date'])
+    - data['month'] = data['date'].dt.month
 ```
 
 ## Numpy:
@@ -96,6 +110,7 @@ For loop:
 - sns.lmplot(x = <column1>, y = <column2>, data = dataFrame, ci = None): adding a trendline
     - ci: confident interval
 - sns.countplot(x = <column>, data = data) : countplot for each gender
+- sns.heatmap(data.corr(), annot = True)
 - Setting HUE:
     - sns.scatterplot(x = <column1>, y = <column2>, data = dataFrame, hue, hue_order, palette = hue_colors)
         - hue = <column3>
