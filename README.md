@@ -48,6 +48,19 @@ For loop:
     - data = pd.read_csv('link to file", parse_dates = ['date column'])
     - data['date'] = pd.to_datetime(data['date'])
     - data['month'] = data['date'].dt.month
+- Cross-tabulation:
+    - pd.crostab(data[<column1>], data[<column2>], values = data[<column3>], aggfunc = 'median')
+        - column1 will be the index
+        - column2 will be the count of combined obervation
+        - aggfunc: apply median function for the values argument
+- Creating categories:
+    - twenty_fifth = data[<column>].quantile(0.25)
+    - seventy_fifth = data[<column>].quantile(0.75)
+    - median = data[<column>].median()
+    - maximum = data[<column>].max()
+    - labels = ['economy', 'premium', 'business', 'first']
+    - bins = [0, twenty_fifth, median, seventy_fifth, max]
+    - data[<new_column>] = pd.cut(data[<column>], labels = labels, bins = bins)
 ```
 
 ## Numpy:
@@ -111,6 +124,10 @@ For loop:
     - ci: confident interval
 - sns.countplot(x = <column>, data = data) : countplot for each gender
 - sns.heatmap(data.corr(), annot = True)
+- sns.pairplot(data, vars = [<column1>, <column2>, <column3>, .etc]): plot all pairwise relationship between numeric variables
+- sns.kdeplot(data, x, hue, cut = 0, cumulative = True): Kernel Density Estimate Plot
+    - cut: how far pass the minimum and maximum data values the curve should go
+    - cumulative: if we are interested in cumulative curve
 - Setting HUE:
     - sns.scatterplot(x = <column1>, y = <column2>, data = dataFrame, hue, hue_order, palette = hue_colors)
         - hue = <column3>
