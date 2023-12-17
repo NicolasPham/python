@@ -122,6 +122,7 @@ For loop:
 - sns.scatterplot(x = <column1>, y = <column2>, data = dataFrame, hue = <column3>, hue_order = [<value1>, <value2>])
 - sns.lmplot(x = <column1>, y = <column2>, data = dataFrame, ci = None): adding a trendline
     - ci: confident interval
+- sns.regplot(x, y, data, ci): also adding a trendline using linear regression
 - sns.countplot(x = <column>, data = data) : countplot for each gender
 - sns.heatmap(data.corr(), annot = True)
 - sns.pairplot(data, vars = [<column1>, <column2>, <column3>, .etc]): plot all pairwise relationship between numeric variables
@@ -347,4 +348,8 @@ For loop:
         - Numerics: Histogram, boxplot, summary statistic
         - Categorical: Bar chart, table summary
     - Bivariate: involve 2 variables, also called "covariation"
-        - 
+```
+## Regression:
+``` python
+    
+```
