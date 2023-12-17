@@ -351,5 +351,16 @@ For loop:
 ```
 ## Regression:
 ``` python
-    
+- Linear Regression:
+    - Intercept: value of y when x = 0
+    - Slope: value of y increases if increase x by 1
+    - Equation: y = intercept + slope * x
+    - Python:
+        - from statsmodels.formula.api import ols (ordinary least squares)
+        - mdl_payment_vs_claims = ols('total_payment_sek ~ n_claims', data = data)
+            - response ~ exploratory variable
+        - mdl_payment_vs_claims = mdl_payment_vs_claims.fit()
+        - print(mdl_payment_vs_claims.params)
+
+        - new_variable = ols(
 ```
