@@ -107,6 +107,9 @@ For loop:
 - plt.boxplot(data[<column>])
 - plt.legent(['Male', 'Female'])
 - plt.clf() -> clean up plot
+- plt.axis('equal'): make the x axis is euqal to y axis
+
+- plt.axline(xy1 = (150, 150), slope = 1, linewidth = 2, color = 'green'): draw the line with intercept as xy1, and slope = 1
 
 
 - Adjust the graph:
@@ -122,13 +125,16 @@ For loop:
 - sns.scatterplot(x = <column1>, y = <column2>, data = dataFrame, hue = <column3>, hue_order = [<value1>, <value2>])
 - sns.lmplot(x = <column1>, y = <column2>, data = dataFrame, ci = None): adding a trendline
     - ci: confident interval
-- sns.regplot(x, y, data, ci): also adding a trendline using linear regression
+- sns.regplot(x, y, data, ci, line_kws): also adding a trendline using linear regression
+    - line_kws: {'color': 'black'}
 - sns.countplot(x = <column>, data = data) : countplot for each gender
 - sns.heatmap(data.corr(), annot = True)
 - sns.pairplot(data, vars = [<column1>, <column2>, <column3>, .etc]): plot all pairwise relationship between numeric variables
 - sns.kdeplot(data, x, hue, cut = 0, cumulative = True): Kernel Density Estimate Plot
     - cut: how far pass the minimum and maximum data values the curve should go
     - cumulative: if we are interested in cumulative curve
+
+- fig = plt.figure(): set to plot multiple layers
 - Setting HUE:
     - sns.scatterplot(x = <column1>, y = <column2>, data = dataFrame, hue, hue_order, palette = hue_colors)
         - hue = <column3>
@@ -161,6 +167,9 @@ For loop:
             - from numpy import median
             - estimator = median: calculate median instead of mean by default
         -capsize = 0.2: change the way confident interval is displayed
+
+    -sns.distplot(data, x, y , hue, row, col, kind): used to create multiple plot
+        - kind = 'hist', 'kde'
 - CHANGING PLOT STYLE AND COLOR: have to use "", NOT ''
     - style: include background and axes
         - sns.set_style()
@@ -351,7 +360,7 @@ For loop:
 ```
 ## Regression:
 ``` python
-- Linear Regression:
+- Linear Regression: response value = fittedValues + residual
     - Intercept: value of y when x = 0
     - Slope: value of y increases if increase x by 1
     - Equation: y = intercept + slope * x
@@ -362,5 +371,14 @@ For loop:
         - mdl_payment_vs_claims = mdl_payment_vs_claims.fit()
         - print(mdl_payment_vs_claims.params)
 
-        - new_variable = ols(
+        - new_variable = ols('response ~ exploratory + 0', data = data).fit(): model without intercept for categories variables
+- Making prediction:
+    - exploratory_data = pd.DataFrame({'length_cm': np.arange(20:41)}): filter the range of column name 'length_cm' to 20-41
+    - predicted_data = exploratory_data.assign(response_var = model.predict(exploratory_data))
+    - print(predicted_data)
+- Working with model objects:
+    - .fittedvalues: prediction on the original dataset
+    - .resid: actual response values minus predicted response values
+    - .summary(): shows more extended printout of the details of the model
+- Regression to the mean: ~ extreme cases don't persist over time
 ```
