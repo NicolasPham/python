@@ -380,5 +380,11 @@ For loop:
     - .fittedvalues: prediction on the original dataset
     - .resid: actual response values minus predicted response values
     - .summary(): shows more extended printout of the details of the model
+    - .rsquared: show the coefficient of determination
+    - .mse_resid: mean squared error
 - Regression to the mean: ~ extreme cases don't persist over time
+- Quantifying model fit:
+    - Coefficient of determination: r-squared (single linear regression) or R-Squared (when more than 1 explanatory variables)
+    - Residual standard error (RSE): a typical difference between predicted values and observed values
+    - Mean squared error (MSE) = RSE ** 2
 ```
