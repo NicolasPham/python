@@ -387,4 +387,21 @@ For loop:
     - Coefficient of determination: r-squared (single linear regression) or R-Squared (when more than 1 explanatory variables)
     - Residual standard error (RSE): a typical difference between predicted values and observed values
     - Mean squared error (MSE) = RSE ** 2
+- Visualizing model fit:
+    - Residual vs fitted plot:
+        - sns.residplot(x = explanatory_variable, y = responsse_values, data, lowess = True)
+    - qqplot:
+        - from statsmodels.api import qqplot
+        - qqplot(data = model.resid, fit = True, line = '45')
+    - Scale-location plot:
+        - model_norm_resid = model.et_influence().resid_studentized_internal
+        - model_norm_resid_sqrt = np.sqrt(np.abs(model_norm_resid))
+        - sns.regplot(x = model.fittedvalues, y = model_norm_resid_sqrt, ci = None, lowess = True)
+- Leverage and Influence:
+    - Leverage: measure how extreme explanatory variable values are
+    - Influence: measure how much the model would change if you left the observation out of the dataset
+    - 
+    - Python:
+        - summary = model.get_influence().summary_frame()
+        - data['leverage'] = summary['hat_diag']
 ```
