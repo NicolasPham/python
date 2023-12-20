@@ -110,6 +110,7 @@ For loop:
 - plt.axis('equal'): make the x axis is euqal to y axis
 
 - plt.axline(xy1 = (150, 150), slope = 1, linewidth = 2, color = 'green'): draw the line with intercept as xy1, and slope = 1
+    - plt.axline(xy1 = (0, intercept), slope))
 
 
 - Adjust the graph:
@@ -119,14 +120,16 @@ For loop:
     - plt.ysticks([0, 2, 4, 6, 8, 10],
     -             ['0B', '2B', '4B', '6B', '8B', '10B'])
     - plt.grid(True)
+    - plt.yscale('log'): scale the y axis to log
 
 - tips = sns.load_dataset('tips'): load the dataset name 'tips' as variable "tips"
 - sns.histplot(data, x, binwidth)
 - sns.scatterplot(x = <column1>, y = <column2>, data = dataFrame, hue = <column3>, hue_order = [<value1>, <value2>])
 - sns.lmplot(x = <column1>, y = <column2>, data = dataFrame, ci = None): adding a trendline
     - ci: confident interval
-- sns.regplot(x, y, data, ci, line_kws): also adding a trendline using linear regression
+- sns.regplot(x, y, data, ci, line_kws, logistic): also adding a trendline using linear regression
     - line_kws: {'color': 'black'}
+    - logistic = True: plot the logistic regression
 - sns.countplot(x = <column>, data = data) : countplot for each gender
 - sns.heatmap(data.corr(), annot = True)
 - sns.pairplot(data, vars = [<column1>, <column2>, <column3>, .etc]): plot all pairwise relationship between numeric variables
@@ -168,7 +171,7 @@ For loop:
             - estimator = median: calculate median instead of mean by default
         -capsize = 0.2: change the way confident interval is displayed
 
-    -sns.distplot(data, x, y , hue, row, col, kind): used to create multiple plot
+    -sns.displot(data, x, y , hue, row, col, kind): used to create multiple plot
         - kind = 'hist', 'kde'
 - CHANGING PLOT STYLE AND COLOR: have to use "", NOT ''
     - style: include background and axes
@@ -382,6 +385,7 @@ For loop:
     - .summary(): shows more extended printout of the details of the model
     - .rsquared: show the coefficient of determination
     - .mse_resid: mean squared error
+    - .pred_table(): show the confusion matrix
 - Regression to the mean: ~ extreme cases don't persist over time
 - Quantifying model fit:
     - Coefficient of determination: r-squared (single linear regression) or R-Squared (when more than 1 explanatory variables)
@@ -399,9 +403,34 @@ For loop:
         - sns.regplot(x = model.fittedvalues, y = model_norm_resid_sqrt, ci = None, lowess = True)
 - Leverage and Influence:
     - Leverage: measure how extreme explanatory variable values are
+        - High leverage means the explanatory variable has values that are different from other points of the dataset
     - Influence: measure how much the model would change if you left the observation out of the dataset
-    - 
+        - it measures how different the prediction line would look if you would run a linear regression on all data points except that point
+    - Cook's distance: the most common measure of influence
     - Python:
         - summary = model.get_influence().summary_frame()
         - data['leverage'] = summary['hat_diag']
+
+- Logistic Regression:
+    - python:
+        - from statsmodels.formula.api import logit
+        - mdl = logit(reponse ~ explanatory, data).fit()
+        - prediction_data = explanatory_data.assign(has_churned = mdl.predict(explanatory_data))
+    - CONFUSION MATRIX:
+        - actual_response = churn['has_churned']
+        - predicted_response = np.round(model.predict())
+        - outcomes = pd.DataFrame({'actual': actual_response, 'predicted' = predicted_response})
+        - print(outcomes.value_counts(sort = False))
+
+        - from statsmodels.graphics.mosaicplot import mosaic
+        - mosaic(conf_matrix)
+    - Odds ratio:
+        - odds ratio = probability / (1 - probability)
+    - Quantifying: using confusion matrix
+        - False Positive: predict YES when it is NO
+        - False Negative: predict NO when it is YES
+        - Accuracy = (TN + TP) / (TN + TP + FN + FP): proportion of correct predictions
+        - Sensitivity = TP / (FN + TP): the proportion of true positive
+        - Specificity = TN / (TN + FP): proportion of true negatives
+
 ```
