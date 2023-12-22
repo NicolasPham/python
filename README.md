@@ -432,5 +432,19 @@ For loop:
         - Accuracy = (TN + TP) / (TN + TP + FN + FP): proportion of correct predictions
         - Sensitivity = TP / (FN + TP): the proportion of true positive
         - Specificity = TN / (TN + FP): proportion of true negatives
-
 ```
+## Hypothesis:
+``` python
+- Calculate sample mean: mean = data[<column>'].mean() : also called summary statistic
+- Generate bootstrap distribution:
+    - Step1: resample:
+        - new_data = data.sample(frac = 1, replace = True)[<column>]
+    - Step2: Calculate point estimate:
+        - np.mean(new_data)
+    - Step3: repeat step 1 and 2 many times, append to a list:
+        - so_boot_dist = []
+        - for i in range(5000):
+            - so_boot_dist.append()
+- Calculate standard error: np.std(so_boot_dist, ddof = 1)
+```
+
