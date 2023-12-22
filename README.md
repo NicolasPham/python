@@ -436,7 +436,11 @@ For loop:
 ## Hypothesis:
 ``` python
 - Calculate sample mean: mean = data[<column>'].mean() : also called summary statistic
-- Generate bootstrap distribution:
+    - For categorical column: mean = (data[<column>] == 'value').mean()
+- Generate bootstrap distribution: to standardize data we need
+        - Sample statistic (point estimate)
+        - Hypothesis test statistic
+        - standard error (estimated from bootstrap distribution)
     - Step1: resample:
         - new_data = data.sample(frac = 1, replace = True)[<column>]
     - Step2: Calculate point estimate:
@@ -446,5 +450,24 @@ For loop:
         - for i in range(5000):
             - so_boot_dist.append()
 - Calculate standard error: np.std(so_boot_dist, ddof = 1)
+- z_score = (prop_sample - prob_hyp) / std_error
+- p-values: the probability of obtaining a result, assuming the null hypothesis is true
+    - large p-value: large support for H0 means statistic likely "NOT IN" the tail of null hypothesis
+        - Fail to reject null hypothesis
+    - small p-value: strong evidence again H0 means statistic likely "IN" the tail of null hypothesis
+        - Reject null hypothesis
+    - Calculate:
+        - from scipy.stats import norm
+        - 1 - norm.cdf(z_score, loc = 0, scale = 1)
+            - loc: default mean value = 0
+            - scale: std_error = 1
+    - left tail test: use norm.cdf()
+    - right tail test: use 1 - norm.cdf()
+
+- Cut off point (significance level alpha)
+- Confidence Interval: (1 - alpha)
+    - lower = np.quantile(so_boot_dist, 0.025)
+    - upper = np.quantile(so_boot_dist, 0.975)
+    - IF the hypothesis population parameter is within the Confidence Interval, we should fail to reject H0
 ```
 
