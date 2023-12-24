@@ -492,5 +492,24 @@ For loop:
         - from scipy.stats import t
         - p_values = 1 - t.cdf(t_stat, df) : used for right tail test
         - p_values = t.cdf(t_stat, df) : used for left tail test
+
+- Paired t-test:
+    - since variables are not independent, degree of freedom = n - 1
+    - Calculate:'
+        - mean_diff -> data['diff'].std() -> t_value
+        - df = n - 1 -> p_value
+    - Easier way:
+        - import pingouin
+        - pingouin.ttest(x = data['diff'], y = 0, alternative = 'less')
+            - x: mean statistic
+            - y: mean hypothesis
+            - alternative: 'two-sided', 'less', 'greater' for the alternative hypothesis
+        - pingouin.ttest(x = data[<column1>], y = data[<column2>], paired = True, alternative = 'less)
+            - pass 2 variables instead of passing 1 column called 'diff'
+
+- ANOVA test: a test for difference between groups:
+    - pingouin.anova(data, dv = <column1>, between = <column2>)
+        - if p-unc < alpha: reject null hypothesis -> at least 2 categories are significant different
+    - pingouin.pairwist_test(data, dv, between, padjust = 'none')
 ```
 
