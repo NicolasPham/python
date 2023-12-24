@@ -435,6 +435,15 @@ For loop:
 ```
 ## Hypothesis:
 ``` python
+- Workflow of hypothesis testing:
+    - Identify population parameter that is hypothesized about
+    - Specify the null and alternative hypotheses
+    - Determine (standardize) test statistic and corresponding null distribution
+    - Conduct hypothesis test in python
+    - Measure evidence againt null hypothesis
+    - Make a decision comparing evidence to significance level
+    - Interpret the result in the context of the original problem
+
 - Calculate sample mean: mean = data[<column>'].mean() : also called summary statistic
     - For categorical column: mean = (data[<column>] == 'value').mean()
 - Generate bootstrap distribution: to standardize data we need
@@ -450,7 +459,7 @@ For loop:
         - for i in range(5000):
             - so_boot_dist.append()
 - Calculate standard error: np.std(so_boot_dist, ddof = 1)
-- z_score = (prop_sample - prob_hyp) / std_error
+- z_score = (prop_sample - prob_hyp) / std_error or also (sample statistic - population mean) / std_error
 - p-values: the probability of obtaining a result, assuming the null hypothesis is true
     - large p-value: large support for H0 means statistic likely "NOT IN" the tail of null hypothesis
         - Fail to reject null hypothesis
@@ -469,5 +478,19 @@ For loop:
     - lower = np.quantile(so_boot_dist, 0.025)
     - upper = np.quantile(so_boot_dist, 0.975)
     - IF the hypothesis population parameter is within the Confidence Interval, we should fail to reject H0
+
+
+- Performing T-test: Compare sample statistics across group of variable
+    - z-score is a standardized test statistic
+    - t-score = (difference in sample stats - difference in population parameter) / std_error
+        - std = sqrt(s1^2 / n1 + s2^2 / 2)
+            - s: standard deviation
+            - n: sample size
+        - if we assume null hypothesis is true -> difference between population parameter = 0
+    - degree of freedom (df): n1 + n2 - 2
+    - Calculate p-value for t-test:
+        - from scipy.stats import t
+        - p_values = 1 - t.cdf(t_stat, df) : used for right tail test
+        - p_values = t.cdf(t_stat, df) : used for left tail test
 ```
 
