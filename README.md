@@ -411,6 +411,25 @@ For loop:
         - summary = model.get_influence().summary_frame()
         - data['leverage'] = summary['hat_diag']
 
+- Parallel Slope Regression:
+    - model = ols('mass_g ~ length_cm + species + 0', data = fish).fit()
+    - coeffs = model.params
+    - ic_bream, ic_perch, ic_pike, ic_roach, sl = coeffs
+    - plt.axline(xy1 = (0, ic_bream), slope = sl, color = 'blue')
+    - Prediction:
+        - length_cm = np.arrange(5,61, 5)
+        - species = fish['species'].unique()
+        - from itertools import product
+        - p = product(length_cm, species)
+        - expl_data = pd.DataFrame(p, columns = ['length_cm', 'species'])
+        - prediction_data = expl_data.assign(mass_g = model.predict(expl_data))
+    - Manually calculate value:
+        - conditions = [data['species'] == 'Bream', data['species'] == 'Perch', data['species'] == 'Pike', ...]
+        - choices = [ic_bream, ic_perch, ic_pike, ...] : choices and conditions have to be same length
+        - intercept = np.select(conditions, choices)
+        - prediction_data = expl_data.assign(intercept = np.select(conditions, choices),
+                                            mass_g = intercept + slope * expl_data['length'])
+
 - Logistic Regression:
     - python:
         - from statsmodels.formula.api import logit
