@@ -384,12 +384,20 @@ For loop:
     - .resid: actual response values minus predicted response values
     - .summary(): shows more extended printout of the details of the model
     - .rsquared: show the coefficient of determination
+    - .rsquared_adj: the adjust coefficient of determination
     - .mse_resid: mean squared error
+    - np.sqrt(mse_resid): residual standard error
     - .pred_table(): show the confusion matrix
 - Regression to the mean: ~ extreme cases don't persist over time
 - Quantifying model fit:
     - Coefficient of determination: r-squared (single linear regression) or R-Squared (when more than 1 explanatory variables)
+        - show how well the linear regression line fits the observed values
+        - A larger number is better (from 0 to 1)
+        - Adding more explanatory variables will increase R-squared but also cause overfitting
+            => adjust coefficient determination penalizes more explanatory variables
+            - adj r-squared = 1 - (1-R-squared)* (n_obs - 1) / (n_obs - n_var - 1)
     - Residual standard error (RSE): a typical difference between predicted values and observed values
+        - Smaller number is better
     - Mean squared error (MSE) = RSE ** 2
 - Visualizing model fit:
     - Residual vs fitted plot:
