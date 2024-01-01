@@ -540,3 +540,8 @@ For loop:
     - pingouin.pairwist_test(data, dv, between, padjust = 'none')
 ```
 
+## A/B Testing:
+``` python
+- Key performance Indicators (KPIs):A/B test are run to improve KPIs
+
+```
