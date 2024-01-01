@@ -249,6 +249,8 @@ For loop:
         - data.isna().sum(): counting missing values
     - data.dropna(): removing missing values
     - data.fillna(0): fill NaN with 0
+- Merging dataframe:
+    new_df = df1.merge(df2, how = 'inner', on = [<column>])
 ```
 ## Statistic:
 ``` python
